@@ -5,12 +5,6 @@ class Plateau:
         self.plateau = plateau
         self.plateau_gagnant = ["1", "2", "3", "4", "5", "6", "7", "8", ""]
 
-    def __eq__(self, other):
-        return isinstance(other, Plateau) and self.plateau == other.plateau
-
-    def __hash__(self):
-        return hash(tuple(self.plateau))
-
     def voisins(self) -> list:
         voisins = []
         i_vide = self.plateau.index("")
@@ -49,7 +43,7 @@ class TaquinSolver:
         distances = {self.plateau_depart: 0}
         sommets_visites = {}
 
-        while file:
+        while file != []:
             plateau_courant = file.pop(0)
             distance_courante = distances[plateau_courant]
 
@@ -75,6 +69,8 @@ class TaquinSolver:
         return chemin
 
 
+
+
 def afficher_plateau(plateau: Plateau):
     """Affiche un plateau sous forme 3x3."""
     for i in range(0, 9, 3):
@@ -98,3 +94,4 @@ if chemin_solution:
         afficher_plateau(etape)
 else:
     print("Aucune solution trouvée.")
+
